@@ -1,0 +1,14 @@
+sudo: required
+
+language: python
+
+services:
+  - docker
+
+before_install:
+  - docker build -t sftech/squid .
+  - docker run -d -p 3128:3128 sftech/squid
+  - docker ps -a
+
+script: behave
+
