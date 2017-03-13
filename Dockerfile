@@ -7,10 +7,12 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+RUN mkdir -p /etc/squid3.d
 COPY squid.conf /etc/squid3.d/squid.conf
-RUN sed -i "1iinclude /etc/squid3.d/*.conf" /etc/squid3/squid.conf \
+RUN sed -i "1iinclude /etc/squid3.d/*.conf" /etc/squid/squid.conf \
     && dpkg-reconfigure squid3 \
-    && sleep 1
+    && squid -z \
+    && sleep 1 
 
-VOLUME "/var/spool/squid3"
+VOLUME "/var/spool/squid"
 CMD ["squid3", "-N"]
