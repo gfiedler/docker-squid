@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:18.04
 MAINTAINER Gerald Fiedler <gfiedler@sftech.de>
 
 RUN apt-get update \
